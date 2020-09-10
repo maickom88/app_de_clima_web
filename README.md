@@ -24,8 +24,6 @@ Em seguida gere a sua chave usando o comando abaixo!
 $ php artisan key:generate
 ```
 
-Em seguida gere a sua chave usando o comando abaixo!
-
 ###### Verifique na pasta raiz se foi gerado umarquivo com nome .env!
 
 # Iniciar servidor
