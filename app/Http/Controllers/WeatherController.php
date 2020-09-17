@@ -20,8 +20,13 @@ class WeatherController extends Controller
 
 
 		if (!Cache::has("{$req->city}")) {
-			$data = $repository->getWeather($req->city);
-			$cache = Cache::put("{$req->city}", $data, 15);
+			try {
+				$data = $repository->getWeather($req->city);
+				$cache = Cache::put("{$req->city}", $data, 15);
+			} catch (\Exception $e) {
+				$data = null;
+				$cache = Cache::put("{$req->city}", $data, 15);
+			}
 		}
 
 
@@ -29,7 +34,7 @@ class WeatherController extends Controller
 
 
 		try {
-			if ($data->cod == "200") {
+			if ($data->cod == 200) {
 				return view('clima')->with('data', $data);
 			} else {
 				return view('clima')->with('error', true);

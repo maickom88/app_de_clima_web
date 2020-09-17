@@ -15,8 +15,7 @@ class ApiWeather
 			$body = file_get_contents($url);
 			return json_decode($body);
 		} catch (\Exception $e) {
-
-			throw $e;
+			return $e;
 		}
 	}
 }
